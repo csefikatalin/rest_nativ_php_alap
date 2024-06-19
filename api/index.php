@@ -1,5 +1,6 @@
 
 <?php
+
 /* https://clouddevs.com/php/developing-a-restful-api/ */
 require '../vendor/autoload.php'; // Include Slim framework
 // Include the database connection file
@@ -8,17 +9,29 @@ require 'database.php';
 // Include the Item and ItemController files
 require 'ItemController.php'; 
 
+// Include CORS Middleware
+require 'corsMiddleware.php';
+
 // Create and configure Slim app
 $config = ['settings' => [
     'addContentLengthHeader' => false,
     'displayErrorDetails' => true, // Turn on error details
 ]];
 $app = new \Slim\App($config);
+// Add CORS Middleware
+
+
+$app->add($corsMiddleware);
+
+// Handle preflight requests
+$app->options('/{routes:.+}', function ($request, $response, $args) {
+    return $response;
+});
 
 // Define app routes
-$app->get('/hello/{name}', function ($request, $response, $args) {
+/* $app->get('/hello/{name}', function ($request, $response, $args) {
     return $response->write("Hello " . $args['name']);
-});
+}); */
 
 
 // Create a new instance of the ItemController with the database connection
