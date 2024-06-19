@@ -1,21 +1,22 @@
-php
 <?php
+require 'Item.php';
 class ItemController {
     private $db;
     private $item;
 
     public function __construct($db) {
         $this->db = $db;
-        $this->item = new Item($db);
+       $this->item = new Item($db);
     }
 
-    // Add methods for different API actions here
-    public function getAllItems($request, $response) {
-        // Implement logic to retrieve all items from the database
-        $items = $this->item->getAll();
+    public function getAllItems($request, $response, $args) {
+        $query = "SELECT * FROM items";
+        $stmt = $this->db->query($query);
+        $items = $stmt->fetchAll(PDO::FETCH_OBJ);
+
         return $response->withJson($items);
-     
     }
+
     public function getItemById($request, $response, $args) {
         // Implement logic to retrieve a specific item by ID
     }

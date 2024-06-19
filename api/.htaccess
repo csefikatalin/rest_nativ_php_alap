@@ -5,4 +5,3 @@ RewriteRule ^ index.php [QSA,L]
 
 AllowOverride All
 
-<!-- https://www.slimframework.com/docs/v3/start/web-servers.html -->

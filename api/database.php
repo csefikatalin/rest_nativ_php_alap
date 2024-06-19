@@ -1,4 +1,4 @@
-php
+
 <?php
 $host = 'localhost';
 $db_name = 'jatek_allas';
