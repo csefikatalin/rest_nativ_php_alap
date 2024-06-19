@@ -11,9 +11,13 @@ Csak a GET kérés készült el egyelőre.
 #### Táblák
 
 **items**
+
 id: autoincrement
+
 nev: string
+
 pont: integer
+
 
 ### Slim 
 
